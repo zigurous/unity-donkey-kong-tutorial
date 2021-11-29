@@ -62,9 +62,10 @@ public class Player : MonoBehaviour
             direction.y = Input.GetAxis("Vertical") * moveSpeed;
         } else if (grounded && Input.GetButtonDown("Jump")) {
             direction = Vector2.up * jumpStrength;
+        } else {
+            direction += Physics2D.gravity * Time.deltaTime;
         }
 
-        direction += Physics2D.gravity * Time.deltaTime;
         direction.x = Input.GetAxis("Horizontal") * moveSpeed;
 
         // Prevent gravity from building up infinitely
@@ -72,9 +73,9 @@ public class Player : MonoBehaviour
             direction.y = Mathf.Max(direction.y, -1f);
         }
 
-        if (direction.x >= 0f) {
+        if (direction.x > 0f) {
             transform.eulerAngles = Vector3.zero;
-        } else {
+        } else if (direction.x < 0f) {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
     }
