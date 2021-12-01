@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2158710608520639947}
   - component: {fileID: 2158710608520639944}
   - component: {fileID: 6120882214980216202}
-  - component: {fileID: 2158710608520639951}
-  m_Layer: 0
+  - component: {fileID: 7194238517541676239}
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -97,9 +97,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -122,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
---- !u!114 &2158710608520639951
+--- !u!114 &7194238517541676239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,4 +134,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e70279c137273f40b7853fbdc1a51c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingForce: {x: 40, y: 0, z: 0}
+  initialForce: {x: 1, y: 0}
+  speed: 5
