@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private new Rigidbody2D rigidbody;
     private new Collider2D collider;
 
-    private Collider2D[] overlaps = new Collider2D[8];
+    private Collider2D[] overlaps = new Collider2D[4];
     private Vector2 direction;
 
     private bool grounded;
