@@ -3,16 +3,18 @@ using UnityEngine;
 public class Barrel : MonoBehaviour
 {
     private new Rigidbody2D rigidbody;
-    public Vector3 startingForce;
+    public float speed = 1f;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        rigidbody.AddForce(startingForce, ForceMode2D.Impulse);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+            rigidbody.AddForce(collision.transform.right * speed, ForceMode2D.Impulse);
+        }
     }
 
 }
