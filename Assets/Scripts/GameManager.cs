@@ -3,23 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager m_Instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (m_Instance == null)
-            {
-                m_Instance = FindObjectOfType<GameManager>();
-                if (m_Instance == null)
-                {
-                    GameObject go = new GameObject("Game Manager");
-                    m_Instance = go.AddComponent<GameManager>();
-                }
-            }
-            return m_Instance;
-        }
-    }
+    public static GameManager Instance { get; private set; }
 
     private const int NUM_LEVELS = 2;
 
@@ -29,24 +13,24 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (m_Instance != null) {
+        if (Instance != null) {
             DestroyImmediate(gameObject);
         } else {
-            m_Instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
 
     private void OnDestroy()
     {
-        if (m_Instance == this) {
-            m_Instance = null;
+        if (Instance == this) {
+            Instance = null;
         }
     }
 
     private void Start()
     {
-        NewGame();
+        level = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
     private void NewGame()
@@ -82,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadScene()
     {
-        SceneManager.LoadScene(level);
+        SceneManager.LoadScene($"Level{level}");
     }
 
     public void LevelComplete()
