@@ -2,6 +2,7 @@
   "dependencies": {
     "com.unity.2d.animation": "5.2.7",
     "com.unity.2d.pixel-perfect": "4.0.1",
+    "com.unity.2d.psdimporter": "4.3.1",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.spriteshape": "5.3.0",
     "com.unity.2d.tilemap": "1.0.0",
