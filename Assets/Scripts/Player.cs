@@ -115,7 +115,9 @@ public class Player : MonoBehaviour
                 spriteIndex = 0;
             }
 
-            spriteRenderer.sprite = runSprites[spriteIndex];
+            if (spriteIndex > 0 && spriteIndex <= runSprites.Length) {
+                spriteRenderer.sprite = runSprites[spriteIndex];
+            }
         }
     }
 
