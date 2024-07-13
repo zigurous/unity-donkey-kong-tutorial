@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private GameManager gameManager;
-
     private SpriteRenderer spriteRenderer;
     public Sprite[] runSprites;
     public Sprite climbSprite;
@@ -23,7 +21,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
@@ -129,12 +126,12 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Objective"))
         {
             enabled = false;
-            gameManager.LevelComplete();
+            FindObjectOfType<GameManager>().LevelComplete();
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             enabled = false;
-            gameManager.LevelFailed();
+            FindObjectOfType<GameManager>().LevelFailed();
         }
     }
 
