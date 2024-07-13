@@ -47,8 +47,12 @@ public class Player : MonoBehaviour
         grounded = false;
         climbing = false;
 
+        // the amount that two colliders can overlap
+        // increase this value for steeper platforms
+        float skinWidth = 0.1f;
+
         Vector2 size = collider.bounds.size;
-        size.y += 0.1f;
+        size.y += skinWidth;
         size.x /= 2f;
 
         int amount = Physics2D.OverlapBoxNonAlloc(transform.position, size, 0f, overlaps);
@@ -60,7 +64,7 @@ public class Player : MonoBehaviour
             if (hit.layer == LayerMask.NameToLayer("Ground"))
             {
                 // Only set as grounded if the platform is below the player
-                grounded = hit.transform.position.y < (transform.position.y - 0.5f);
+                grounded = hit.transform.position.y < (transform.position.y - 0.5f + skinWidth);
 
                 // Turn off collision on platforms the player is not grounded to
                 Physics2D.IgnoreCollision(overlaps[i], collider, !grounded);
