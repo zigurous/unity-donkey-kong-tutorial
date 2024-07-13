@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private GameManager gameManager;
+
     private SpriteRenderer spriteRenderer;
     public Sprite[] runSprites;
     public Sprite climbSprite;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
@@ -47,11 +50,11 @@ public class Player : MonoBehaviour
         grounded = false;
         climbing = false;
 
-        Vector3 size = collider.bounds.size;
+        Vector2 size = collider.bounds.size;
         size.y += 0.1f;
         size.x /= 2f;
 
-        int amount = Physics2D.OverlapBoxNonAlloc(transform.position, size, 0, overlaps);
+        int amount = Physics2D.OverlapBoxNonAlloc(transform.position, size, 0f, overlaps);
 
         for (int i = 0; i < amount; i++)
         {
@@ -126,12 +129,12 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Objective"))
         {
             enabled = false;
-            FindObjectOfType<GameManager>().LevelComplete();
+            gameManager.LevelComplete();
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             enabled = false;
-            FindObjectOfType<GameManager>().LevelFailed();
+            gameManager.LevelFailed();
         }
     }
 
