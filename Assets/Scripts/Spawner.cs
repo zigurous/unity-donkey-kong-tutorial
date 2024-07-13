@@ -6,9 +6,14 @@ public class Spawner : MonoBehaviour
     public float minTime = 2f;
     public float maxTime = 4f;
 
-    private void Start()
+    private void OnEnable()
     {
-        Spawn();
+        Invoke(nameof(Spawn), minTime);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
     }
 
     private void Spawn()

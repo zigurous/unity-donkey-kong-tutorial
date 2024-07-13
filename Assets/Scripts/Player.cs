@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private new Rigidbody2D rigidbody;
     private new Collider2D collider;
 
-    private Collider2D[] overlaps = new Collider2D[4];
+    private readonly Collider2D[] overlaps = new Collider2D[4];
     private Vector2 direction;
 
     private bool grounded;
@@ -47,8 +47,8 @@ public class Player : MonoBehaviour
         grounded = false;
         climbing = false;
 
-        // the amount that two colliders can overlap
-        // increase this value for steeper platforms
+        // The amount that two colliders can overlap - increase this value for
+        // steeper platforms
         float skinWidth = 0.1f;
 
         Vector2 size = collider.bounds.size;
@@ -130,12 +130,12 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Objective"))
         {
             enabled = false;
-            FindObjectOfType<GameManager>().LevelComplete();
+            GameManager.Instance.LevelComplete();
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             enabled = false;
-            FindObjectOfType<GameManager>().LevelFailed();
+            GameManager.Instance.LevelFailed();
         }
     }
 
