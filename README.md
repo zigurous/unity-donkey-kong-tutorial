@@ -6,4 +6,4 @@
 - **Topics**: Character Controller, Physics, Levels
 - **Version**: Unity 2020.3 LTS
 - [**Download**](https://github.com/zigurous/unity-donkey-kong-tutorial/archive/refs/heads/main.zip)
-- [**Watch Video**](https://www.youtube.com/c/zigurous)
+- [**Watch Video**](https://youtu.be/8qciEnDt-n8)
