@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private new Rigidbody2D rigidbody;
     private new Collider2D collider;
 
-    private Collider2D[] overlaps = new Collider2D[4];
+    private Collider2D[] overlaps = new Collider2D[8];
     private Vector2 direction;
 
     private bool grounded;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating(nameof(AnimateSprite), 0.125f, 0.125f);
+        InvokeRepeating(nameof(AnimateSprite), 1f/12f, 1f/12f);
     }
 
     private void OnDisable()
@@ -116,6 +116,15 @@ public class Player : MonoBehaviour
             }
 
             spriteRenderer.sprite = runSprites[spriteIndex];
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Objective")) {
+            FindObjectOfType<GameManager>().LevelComplete();
+        } else if (collision.gameObject.CompareTag("Obstacle")) {
+            FindObjectOfType<GameManager>().LevelFailed();
         }
     }
 

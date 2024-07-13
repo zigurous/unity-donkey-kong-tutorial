@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DonkeyKong.unity
+    path: Assets/Scenes/Preload.unity
+    guid: 16957a763c161a44781cfae663b933db
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: a2a36bc596d6ddc45a0c9c0a27aa7a86
   m_configObjects: {}
