@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     public Sprite climbSprite;
     private int spriteIndex;
 
-    private new Rigidbody2D rigidbody;
-    private new Collider2D collider;
+    private Rigidbody2D rb;
+    private CapsuleCollider2D capsuleCollider;
 
     private readonly Collider2D[] overlaps = new Collider2D[4];
     private Vector2 direction;
@@ -22,8 +22,8 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rigidbody = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     private void OnEnable()
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         // steeper platforms
         float skinWidth = 0.1f;
 
-        Vector2 size = collider.bounds.size;
+        Vector2 size = capsuleCollider.bounds.size;
         size.y += skinWidth;
         size.x /= 2f;
 
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
                 grounded = hit.transform.position.y < (transform.position.y - 0.5f + skinWidth);
 
                 // Turn off collision on platforms the player is not grounded to
-                Physics2D.IgnoreCollision(overlaps[i], collider, !grounded);
+                Physics2D.IgnoreCollision(overlaps[i], capsuleCollider, !grounded);
             }
             else if (hit.layer == LayerMask.NameToLayer("Ladder"))
             {
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody.MovePosition(rigidbody.position + direction * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + direction * Time.fixedDeltaTime);
     }
 
     private void AnimateSprite()
